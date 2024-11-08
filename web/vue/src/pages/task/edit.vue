@@ -123,6 +123,19 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <el-row  v-if="form.protocol === 1 && form.http_method === 2">
+          <el-col :span="16">
+            <el-form-item label="请求体" prop="request_body">
+              <el-input
+                type="textarea"
+                :rows="5"
+                size="medium"
+                width="100"
+                v-model="form.request_body">
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
         <el-row>
           <el-col>
             <el-alert
@@ -273,6 +286,7 @@ export default {
         protocol: 2,
         http_method: 1,
         command: '',
+        request_body: '',
         host_id: '',
         timeout: 0,
         multi: 2,
@@ -434,6 +448,7 @@ export default {
         this.form.http_method = taskData.http_method
       }
       this.form.command = taskData.command
+      this.form.request_body = taskData.request_body
       this.form.timeout = taskData.timeout
       this.form.multi = taskData.multi ? 1 : 2
       this.form.notify_keyword = taskData.notify_keyword

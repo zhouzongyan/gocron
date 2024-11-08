@@ -23,8 +23,9 @@ type TaskForm struct {
 	DependencyTaskId string
 	Name             string `binding:"Required;MaxSize(32)"`
 	Spec             string
-	Protocol         models.TaskProtocol   `binding:"In(1,2)"`
-	Command          string                `binding:"Required;MaxSize(256)"`
+	Protocol         models.TaskProtocol `binding:"In(1,2)"`
+	Command          string              `binding:"Required;MaxSize(256)"`
+	RequestBody      string
 	HttpMethod       models.TaskHTTPMethod `binding:"In(1,2)"`
 	Timeout          int                   `binding:"Range(0,86400)"`
 	Multi            int8                  `binding:"In(1,2)"`
@@ -106,6 +107,7 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 	taskModel.Name = form.Name
 	taskModel.Protocol = form.Protocol
 	taskModel.Command = strings.TrimSpace(form.Command)
+	taskModel.RequestBody = form.RequestBody
 	taskModel.Timeout = form.Timeout
 	taskModel.Tag = form.Tag
 	taskModel.Remark = form.Remark

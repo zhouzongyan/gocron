@@ -25,13 +25,13 @@ func Get(url string, timeout int) ResponseWrapper {
 	return request(req, timeout)
 }
 
-func PostParams(url string, params string, timeout int) ResponseWrapper {
-	buf := bytes.NewBufferString(params)
+func PostParams(url string, body string, timeout int) ResponseWrapper {
+	buf := bytes.NewBufferString(body)
 	req, err := http.NewRequest("POST", url, buf)
 	if err != nil {
 		return createRequestError(err)
 	}
-	req.Header.Set("Content-type", "application/x-www-form-urlencoded")
+	req.Header.Set("Content-type", "application/json")
 
 	return request(req, timeout)
 }

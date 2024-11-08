@@ -225,11 +225,7 @@ func (h *HTTPHandler) Run(taskModel models.Task, taskUniqueId int64) (result str
 	} else {
 		urlFields := strings.Split(taskModel.Command, "?")
 		taskModel.Command = urlFields[0]
-		var params string
-		if len(urlFields) >= 2 {
-			params = urlFields[1]
-		}
-		resp = httpclient.PostParams(taskModel.Command, params, taskModel.Timeout)
+		resp = httpclient.PostParams(taskModel.Command, taskModel.RequestBody, taskModel.Timeout)
 	}
 	// 返回状态码非200，均为失败
 	if resp.StatusCode != http.StatusOK {

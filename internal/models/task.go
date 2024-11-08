@@ -46,6 +46,7 @@ type Task struct {
 	Spec             string               `json:"spec" xorm:"varchar(64) notnull"`                            // crontab
 	Protocol         TaskProtocol         `json:"protocol" xorm:"tinyint notnull index"`                      // 协议 1:http 2:系统命令
 	Command          string               `json:"command" xorm:"varchar(256) notnull"`                        // URL地址或shell命令
+	RequestBody      string               `json:"request_body" xorm:"text"`                                   // http post 请求体
 	HttpMethod       TaskHTTPMethod       `json:"http_method" xorm:"tinyint notnull default 1"`               // http请求方法
 	Timeout          int                  `json:"timeout" xorm:"mediumint notnull default 0"`                 // 任务执行超时时间(单位秒),0不限制
 	Multi            int8                 `json:"multi" xorm:"tinyint notnull default 1"`                     // 是否允许多实例运行
@@ -81,7 +82,7 @@ func (task *Task) Create() (insertId int, err error) {
 
 func (task *Task) UpdateBean(id int) (int64, error) {
 	return Db.ID(id).
-		Cols(`name,spec,protocol,command,timeout,multi,
+		Cols(`name,spec,protocol,command,request_body,timeout,multi,
 			retry_times,retry_interval,remark,notify_status,
 			notify_type,notify_receiver_id, dependency_task_id, dependency_status, tag,http_method, notify_keyword`).
 		Update(task)
