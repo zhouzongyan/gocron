@@ -177,17 +177,17 @@ run() {
     clean
 }
 
-package_gocron() {
-    BINARY_NAME='gocron'
-    MAIN_FILE="./cmd/gocron/gocron.go"
+package_goscheduler() {
+    BINARY_NAME='goscheduler'
+    MAIN_FILE="./cmd/goscheduler/goscheduler.go"
     INCLUDE_FILE=()
 
 
     run
 }
 
-package_gocron_node() {
-    BINARY_NAME='gocron-node'
+package_goscheduler_node() {
+    BINARY_NAME='goscheduler-node'
     MAIN_FILE="./cmd/node/node.go"
     INCLUDE_FILE=()
 
@@ -211,6 +211,6 @@ do
     esac
 done
  
-package_gocron
-package_gocron_node
+package_goscheduler
+package_goscheduler_node
 

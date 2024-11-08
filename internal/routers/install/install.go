@@ -7,11 +7,11 @@ import (
 
 	macaron "gopkg.in/macaron.v1"
 
-	"github.com/gaggad/gocron/internal/models"
-	"github.com/gaggad/gocron/internal/modules/app"
-	"github.com/gaggad/gocron/internal/modules/setting"
-	"github.com/gaggad/gocron/internal/modules/utils"
-	"github.com/gaggad/gocron/internal/service"
+	"github.com/gaggad/goscheduler/internal/models"
+	"github.com/gaggad/goscheduler/internal/modules/app"
+	"github.com/gaggad/goscheduler/internal/modules/setting"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/service"
 	"github.com/go-macaron/binding"
 	"github.com/go-sql-driver/mysql"
 	"github.com/lib/pq"

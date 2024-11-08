@@ -1,4 +1,4 @@
-// Command gocron
+// Command goscheduler
 //go:generate statik -src=../../web/public -dest=../../internal -f
 
 package main
@@ -10,13 +10,13 @@ import (
 
 	macaron "gopkg.in/macaron.v1"
 
-	"github.com/gaggad/gocron/internal/models"
-	"github.com/gaggad/gocron/internal/modules/app"
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/setting"
-	"github.com/gaggad/gocron/internal/routers"
-	"github.com/gaggad/gocron/internal/service"
-	"github.com/gaggad/gocron/internal/util"
+	"github.com/gaggad/goscheduler/internal/models"
+	"github.com/gaggad/goscheduler/internal/modules/app"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/setting"
+	"github.com/gaggad/goscheduler/internal/routers"
+	"github.com/gaggad/goscheduler/internal/service"
+	"github.com/gaggad/goscheduler/internal/util"
 	"github.com/urfave/cli"
 )
 
@@ -30,8 +30,8 @@ const DefaultPort = 5920
 
 func main() {
 	cliApp := cli.NewApp()
-	cliApp.Name = "gocron"
-	cliApp.Usage = "gocron service"
+	cliApp.Name = "goscheduler"
+	cliApp.Usage = "goscheduler service"
 	cliApp.Version, _ = util.FormatAppVersion(AppVersion, GitCommit, BuildDate)
 	cliApp.Commands = getCommands()
 	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...)

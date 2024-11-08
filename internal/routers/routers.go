@@ -8,23 +8,23 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gaggad/gocron/internal/modules/app"
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/utils"
-	"github.com/gaggad/gocron/internal/routers/host"
-	"github.com/gaggad/gocron/internal/routers/install"
-	"github.com/gaggad/gocron/internal/routers/loginlog"
-	"github.com/gaggad/gocron/internal/routers/manage"
-	"github.com/gaggad/gocron/internal/routers/task"
-	"github.com/gaggad/gocron/internal/routers/tasklog"
-	"github.com/gaggad/gocron/internal/routers/user"
+	"github.com/gaggad/goscheduler/internal/modules/app"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/routers/host"
+	"github.com/gaggad/goscheduler/internal/routers/install"
+	"github.com/gaggad/goscheduler/internal/routers/loginlog"
+	"github.com/gaggad/goscheduler/internal/routers/manage"
+	"github.com/gaggad/goscheduler/internal/routers/task"
+	"github.com/gaggad/goscheduler/internal/routers/tasklog"
+	"github.com/gaggad/goscheduler/internal/routers/user"
 	"github.com/go-macaron/binding"
 	"github.com/go-macaron/gzip"
 	"github.com/go-macaron/toolbox"
 	"github.com/rakyll/statik/fs"
 	"gopkg.in/macaron.v1"
 
-	_ "github.com/gaggad/gocron/internal/statik"
+	_ "github.com/gaggad/goscheduler/internal/statik"
 )
 
 const (
@@ -188,7 +188,7 @@ func checkAppInstall(ctx *macaron.Context) {
 	ctx.Write([]byte(data))
 }
 
-// IP验证, 通过反向代理访问gocron，需设置Header X-Real-IP才能获取到客户端真实IP
+// IP验证, 通过反向代理访问goscheduler，需设置Header X-Real-IP才能获取到客户端真实IP
 func ipAuth(ctx *macaron.Context) {
 	if !app.Installed {
 		return

@@ -7,9 +7,9 @@ import (
 
 	macaron "gopkg.in/macaron.v1"
 
-	"github.com/gaggad/gocron/internal/modules/app"
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/setting"
+	"github.com/gaggad/goscheduler/internal/modules/app"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/setting"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"

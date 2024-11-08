@@ -1,10 +1,15 @@
-# gocron - 定时任务管理系统
-[![Downloads](https://img.shields.io/github/downloads/gaggad/gocron/total.svg)](https://github.com/gaggad/gocron/releases)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/gaggad/gocron/blob/master/LICENSE)
-[![Release](https://img.shields.io/github/release/gaggad/gocron.svg?label=Release)](https://github.com/gaggad/gocron/releases)
+# goscheduler - 定时任务管理系统
+[![Downloads](https://img.shields.io/github/downloads/gaggad/goscheduler/total.svg)](https://github.com/gaggad/goscheduler/releases)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/gaggad/goscheduler/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/gaggad/goscheduler.svg?label=Release)](https://github.com/gaggad/goscheduler/releases)
 
 # 项目简介
 使用Go语言开发的轻量级定时任务集中调度和管理系统，支持http、shell任务
+
+项目的基础代码来自 https://github.com/ouqiang/gocron  
+gocron 是一个很好的项目，但遗憾的是，这个项目已经四年多没有更新了  
+基于 gocron，我做了 goscheduler，计划长期维护，欢迎大家提issue或者加入开发  
+gocron、goscheduler 使用的都是 MIT LICENSE
 
 ## 功能特性
 * Web界面管理定时任务
@@ -22,9 +27,9 @@
 * 任务执行结果通知, 支持邮件、Slack、Webhook
 
 ### 截图
-![流程图](https://raw.githubusercontent.com/gaggad/gocron/master/assets/screenshot/scheduler.png)
-![任务](https://raw.githubusercontent.com/gaggad/gocron/master/assets/screenshot/task.png)
-![Slack](https://raw.githubusercontent.com/gaggad/gocron/master/assets/screenshot/notification.png)
+![流程图](https://raw.githubusercontent.com/gaggad/goscheduler/master/assets/screenshot/scheduler.png)
+![任务](https://raw.githubusercontent.com/gaggad/goscheduler/master/assets/screenshot/task.png)
+![Slack](https://raw.githubusercontent.com/gaggad/goscheduler/master/assets/screenshot/notification.png)
 
 ### 支持平台
 > Windows、Linux、Mac OS
@@ -34,9 +39,16 @@
 
 
 ## 下载
-[releases](https://github.com/gaggad/gocron/releases)
+[releases](https://github.com/gaggad/goscheduler/releases)
 
-[版本升级](https://github.com/gaggad/gocron/wiki/版本升级)
+## 版本升级
+### 替换可执行文件
+下载新版本的 goscheduler/goscheduler-node，直接替换既可
+
+### 更新数据库
+v1.5.4
+--------
+* alter table task add column request_body text after command;
 
 ## 安装
 
@@ -45,66 +57,66 @@
 2. `cd 解压目录`
 3. 启动
 * 调度器启动
-    * Windows: `gocron.exe web`
-    * Linux、Mac OS:  `./gocron web`
+    * Windows: `goscheduler.exe web`
+    * Linux、Mac OS:  `./goscheduler web`
 * 任务节点启动, 默认监听0.0.0.0:5921
-    * Windows:  `gocron-node.exe`
-    * Linux、Mac OS:  `./gocron-node`
+    * Windows:  `goscheduler-node.exe`
+    * Linux、Mac OS:  `./goscheduler-node`
 4. 浏览器访问 http://localhost:5920
 
 ### 源码安装
 
 - 安装Go 1.11+
-- `go get -d github.com/gaggad/gocron`
+- `go get -d github.com/gaggad/goscheduler`
 - `export GO111MODULE=on`
 - 编译 `make`
 - 启动
-    * gocron `./bin/gocron web`
-    * gocron-node `./bin/gocron-node`
+    * goscheduler `./bin/goscheduler web`
+    * goscheduler-node `./bin/goscheduler-node`
 
 
 ### docker
 
 ```shell
-docker run --name gocron --link mysql:db -p 5920:5920 -d ouqg/gocron
+docker run --name goscheduler --link mysql:db -p 5920:5920 -d gaggad/goscheduler
 ```
 
 配置: /app/conf/app.ini
 
-日志: /app/log/cron.log
+日志: /app/log/scheduler.log
 
-镜像不包含gocron-node, gocron-node需要和具体业务一起构建
+镜像不包含goscheduler-node, goscheduler-node需要和具体业务一起构建
 
 
 ### 开发
 
 1. 安装Go1.9+, Node.js, Yarn
 2. 安装前端依赖 `make install-vue`
-3. 启动gocron, gocron-node `make run`
+3. 启动goscheduler, goscheduler-node `make run`
 4. 启动node server `make run-vue`, 访问地址 http://localhost:8080
 
-访问http://localhost:8080, API请求会转发给gocron
+访问http://localhost:8080, API请求会转发给goscheduler
 
 `make` 编译
 
 `make run` 编译并运行
 
 `make package` 打包
-> 生成当前系统的压缩包 gocron-v1.5-darwin-amd64.tar.gz gocron-node-v1.5-darwin-amd64.tar.gz
+> 生成当前系统的压缩包 goscheduler-v1.5-darwin-amd64.tar.gz goscheduler-node-v1.5-darwin-amd64.tar.gz
 
 `make package-all` 生成Windows、Linux、Mac的压缩包
 
 ### 命令
 
-* gocron
+* goscheduler
     * -v 查看版本
 
-* gocron web
+* goscheduler web
     * --host 默认0.0.0.0
     * -p 端口, 指定端口, 默认5920
     * -e 指定运行环境, dev|test|prod, dev模式下可查看更多日志信息, 默认prod
     * -h 查看帮助
-* gocron-node
+* goscheduler-node
     * -allow-root *nix平台允许以root用户运行
     * -s ip:port 监听地址
     * -enable-tls 开启TLS
@@ -125,7 +137,7 @@ docker run --name gocron --link mysql:db -p 5920:5920 -d ouqg/gocron
 * RPC框架 [gRPC](https://github.com/grpc/grpc)
 
 ## 反馈
-提交[issue](https://github.com/gaggad/gocron/issues/new)
+提交[issue](https://github.com/gaggad/goscheduler/issues/new)
 
 ## ChangeLog
 

@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 
-	"github.com/gaggad/gocron/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
 )
 
 // json 格式输出

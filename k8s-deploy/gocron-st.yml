@@ -5,44 +5,44 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gocron
+  name: goscheduler
   labels:
-    app: gocron
+    app: goscheduler
 spec:
   ports:
   - port: 5920
-    name: gocron
+    name: goscheduler
   type: NodePort
   selector:
-    app: gocron
+    app: goscheduler
 ---
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: gocron
+  name: goscheduler
 spec:
-  serviceName: "gocron"
+  serviceName: "goscheduler"
   replicas: 1
   template:
     metadata:
       labels:
-        app: gocron
+        app: goscheduler
     spec:
       securityContext:
         fsGroup: 1000
       terminationGracePeriodSeconds: 10
       containers:
-      - name: gocron
-        image: ouqg/gocron:latest
+      - name: goscheduler
+        image: ouqg/goscheduler:latest
         ports:
         - containerPort: 5920
-          name: gocron
+          name: goscheduler
         volumeMounts:
-        - name: gocron-vol
+        - name: goscheduler-vol
           mountPath: /app/conf
   volumeClaimTemplates:
   - metadata:
-      name: gocron-vol
+      name: goscheduler-vol
     spec:
       storageClassName: rbd
       accessModes: [ "ReadWriteOnce" ]

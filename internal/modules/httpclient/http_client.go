@@ -73,7 +73,7 @@ func request(req *http.Request, timeout int) ResponseWrapper {
 }
 
 func setRequestHeader(req *http.Request) {
-	req.Header.Set("User-Agent", "golang/gocron")
+	req.Header.Set("User-Agent", "golang/goscheduler")
 }
 
 func createRequestError(err error) ResponseWrapper {

@@ -6,11 +6,11 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gaggad/gocron/internal/models"
-	"github.com/gaggad/gocron/internal/modules/app"
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/utils"
-	"github.com/gaggad/gocron/internal/routers/base"
+	"github.com/gaggad/goscheduler/internal/models"
+	"github.com/gaggad/goscheduler/internal/modules/app"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/routers/base"
 	"gopkg.in/macaron.v1"
 )
 
@@ -305,7 +305,7 @@ func generateToken(user *models.User) (string, error) {
 	claims["exp"] = time.Now().Add(tokenDuration).Unix()
 	claims["uid"] = user.Id
 	claims["iat"] = time.Now().Unix()
-	claims["issuer"] = "gocron"
+	claims["issuer"] = "goscheduler"
 	claims["username"] = user.Name
 	claims["is_admin"] = user.IsAdmin
 	token.Claims = claims

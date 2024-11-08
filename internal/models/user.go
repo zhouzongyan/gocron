@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	"github.com/gaggad/gocron/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
 )
 
 const PasswordSaltLength = 6

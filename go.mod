@@ -1,4 +1,4 @@
-module github.com/gaggad/gocron
+module github.com/gaggad/goscheduler
 
 go 1.12
 

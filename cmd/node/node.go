@@ -1,4 +1,4 @@
-// Command gocron-node
+// Command goscheduler-node
 package main
 
 import (
@@ -7,10 +7,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gaggad/gocron/internal/modules/rpc/auth"
-	"github.com/gaggad/gocron/internal/modules/rpc/server"
-	"github.com/gaggad/gocron/internal/modules/utils"
-	"github.com/gaggad/gocron/internal/util"
+	"github.com/gaggad/goscheduler/internal/modules/rpc/auth"
+	"github.com/gaggad/goscheduler/internal/modules/rpc/server"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/util"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -27,13 +27,13 @@ func main() {
 	var keyFile string
 	var enableTLS bool
 	var logLevel string
-	flag.BoolVar(&allowRoot, "allow-root", false, "./gocron-node -allow-root")
-	flag.StringVar(&serverAddr, "s", "0.0.0.0:5921", "./gocron-node -s ip:port")
-	flag.BoolVar(&version, "v", false, "./gocron-node -v")
-	flag.BoolVar(&enableTLS, "enable-tls", false, "./gocron-node -enable-tls")
-	flag.StringVar(&CAFile, "ca-file", "", "./gocron-node -ca-file path")
-	flag.StringVar(&certFile, "cert-file", "", "./gocron-node -cert-file path")
-	flag.StringVar(&keyFile, "key-file", "", "./gocron-node -key-file path")
+	flag.BoolVar(&allowRoot, "allow-root", false, "./goscheduler-node -allow-root")
+	flag.StringVar(&serverAddr, "s", "0.0.0.0:5921", "./goscheduler-node -s ip:port")
+	flag.BoolVar(&version, "v", false, "./goscheduler-node -v")
+	flag.BoolVar(&enableTLS, "enable-tls", false, "./goscheduler-node -enable-tls")
+	flag.StringVar(&CAFile, "ca-file", "", "./goscheduler-node -ca-file path")
+	flag.StringVar(&certFile, "cert-file", "", "./goscheduler-node -cert-file path")
+	flag.StringVar(&keyFile, "key-file", "", "./goscheduler-node -key-file path")
 	flag.StringVar(&logLevel, "log-level", "info", "-log-level error")
 	flag.Parse()
 	level, err := log.ParseLevel(logLevel)
@@ -68,7 +68,7 @@ func main() {
 	}
 
 	if runtime.GOOS != "windows" && os.Getuid() == 0 && !allowRoot {
-		log.Fatal("Do not run gocron-node as root user")
+		log.Fatal("Do not run goscheduler-node as root user")
 		return
 	}
 

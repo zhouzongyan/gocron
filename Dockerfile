@@ -8,13 +8,13 @@ RUN go env -w GO111MODULE=on && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/gaggad/gocron.git \
-    && cd gocron \
+RUN git clone https://github.com/gaggad/goscheduler.git \
+    && cd goscheduler \
     && yarn config set ignore-engines true \
     && make install-vue \
     && make build-vue \
     && make statik \
-    && CGO_ENABLED=0 make gocron
+    && CGO_ENABLED=0 make goscheduler
 
 FROM alpine:3.12
 
@@ -26,7 +26,7 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 WORKDIR /app
 
-COPY --from=builder /app/gocron/bin/gocron .
+COPY --from=builder /app/goscheduler/bin/goscheduler .
 
 RUN chown -R app:app ./
 
@@ -34,4 +34,4 @@ EXPOSE 5920
 
 USER app
 
-ENTRYPOINT ["/app/gocron", "web"]
+ENTRYPOINT ["/app/goscheduler", "web"]

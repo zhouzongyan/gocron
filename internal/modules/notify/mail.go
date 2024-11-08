@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gaggad/gocron/internal/models"
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/models"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
 	"github.com/go-gomail/gomail"
 )
 
@@ -49,7 +49,7 @@ func (mail *Mail) send(mailSetting models.Mail, toUsers []string, msg Message) {
 	gomailMessage := gomail.NewMessage()
 	gomailMessage.SetHeader("From", mailSetting.User)
 	gomailMessage.SetHeader("To", toUsers...)
-	gomailMessage.SetHeader("Subject", "gocron-定时任务通知")
+	gomailMessage.SetHeader("Subject", "goscheduler-定时任务通知")
 	gomailMessage.SetBody("text/html", body)
 	mailer := gomail.NewDialer(mailSetting.Host, mailSetting.Port,
 		mailSetting.User, mailSetting.Password)

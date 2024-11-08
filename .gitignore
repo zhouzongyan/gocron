@@ -29,12 +29,12 @@ log
 data
 conf
 profile/*
-/gocron
-/gocron-node
+/goscheduler
+/goscheduler-node
 /bin
 /web/public/static
 /web/public/index.html
-/gocron-package
-/gocron-node-package
+/goscheduler-package
+/goscheduler-node-package
 
 node_modules

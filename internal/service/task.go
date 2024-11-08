@@ -8,15 +8,15 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gaggad/gocron/internal/util"
+	"github.com/gaggad/goscheduler/internal/util"
 
-	"github.com/gaggad/gocron/internal/models"
-	"github.com/gaggad/gocron/internal/modules/app"
-	"github.com/gaggad/gocron/internal/modules/httpclient"
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/notify"
-	rpcClient "github.com/gaggad/gocron/internal/modules/rpc/client"
-	pb "github.com/gaggad/gocron/internal/modules/rpc/proto"
+	"github.com/gaggad/goscheduler/internal/models"
+	"github.com/gaggad/goscheduler/internal/modules/app"
+	"github.com/gaggad/goscheduler/internal/modules/httpclient"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/notify"
+	rpcClient "github.com/gaggad/goscheduler/internal/modules/rpc/client"
+	pb "github.com/gaggad/goscheduler/internal/modules/rpc/proto"
 	"github.com/jakecoffman/cron"
 )
 

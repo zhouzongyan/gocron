@@ -3,8 +3,8 @@ package setting
 import (
 	"errors"
 
-	"github.com/gaggad/gocron/internal/modules/logger"
-	"github.com/gaggad/gocron/internal/modules/utils"
+	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"github.com/gaggad/goscheduler/internal/modules/utils"
 	"gopkg.in/ini.v1"
 )
 
@@ -53,7 +53,7 @@ func Read(filename string) (*Setting, error) {
 	s.Db.Port = section.Key("db.port").MustInt(3306)
 	s.Db.User = section.Key("db.user").MustString("")
 	s.Db.Password = section.Key("db.password").MustString("")
-	s.Db.Database = section.Key("db.database").MustString("gocron")
+	s.Db.Database = section.Key("db.database").MustString("goscheduler")
 	s.Db.Prefix = section.Key("db.prefix").MustString("")
 	s.Db.Charset = section.Key("db.charset").MustString("utf8")
 	s.Db.MaxIdleConns = section.Key("db.max.idle.conns").MustInt(30)
