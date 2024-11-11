@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gaggad/goscheduler/internal/models"
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
 	"github.com/go-gomail/gomail"
 )
 

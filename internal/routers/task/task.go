@@ -4,13 +4,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gaggad/goscheduler/internal/util"
+	"chn.gg/zhouzongyan/gocron/internal/util"
 
-	"github.com/gaggad/goscheduler/internal/models"
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
-	"github.com/gaggad/goscheduler/internal/routers/base"
-	"github.com/gaggad/goscheduler/internal/service"
+	"chn.gg/zhouzongyan/gocron/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/routers/base"
+	"chn.gg/zhouzongyan/gocron/internal/service"
 	"github.com/go-macaron/binding"
 	"github.com/jakecoffman/cron"
 	"gopkg.in/macaron.v1"
@@ -63,7 +63,7 @@ func Index(ctx *macaron.Context) string {
 		logger.Error(err)
 	}
 	for i, item := range tasks {
-		tasks[i].NextRunTime = service.ServiceTask.NextRunTime(item)
+		tasks[i].NextRunTime, _ = service.ServiceTask.NextRunTime(item)
 	}
 	jsonResp := utils.JsonResponse{}
 

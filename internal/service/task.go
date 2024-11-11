@@ -8,16 +8,15 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gaggad/goscheduler/internal/util"
+	"chn.gg/zhouzongyan/gocron/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/modules/app"
+	"chn.gg/zhouzongyan/gocron/internal/modules/httpclient"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/notify"
 
-	"github.com/gaggad/goscheduler/internal/models"
-	"github.com/gaggad/goscheduler/internal/modules/app"
-	"github.com/gaggad/goscheduler/internal/modules/httpclient"
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/notify"
-	rpcClient "github.com/gaggad/goscheduler/internal/modules/rpc/client"
-	pb "github.com/gaggad/goscheduler/internal/modules/rpc/proto"
-	"github.com/jakecoffman/cron"
+	rpcClient "chn.gg/zhouzongyan/gocron/internal/modules/rpc/client"
+	pb "chn.gg/zhouzongyan/gocron/internal/modules/rpc/proto"
+	"github.com/go-co-op/gocron/v2"
 )
 
 var (
@@ -26,7 +25,8 @@ var (
 
 var (
 	// 定时任务调度管理器
-	serviceCron *cron.Cron
+	// serviceCron *cron.Cron
+	scheduler gocron.Scheduler
 
 	// 同一任务是否有实例处于运行中
 	runInstance Instance
@@ -106,8 +106,10 @@ type TaskResult struct {
 
 // 初始化任务, 从数据库取出所有任务, 添加到定时任务并运行
 func (task Task) Initialize() {
-	serviceCron = cron.New()
-	serviceCron.Start()
+	scheduler, _ = gocron.NewScheduler()
+	scheduler.Start()
+	// serviceCron = cron.New()
+	// serviceCron.Start()
 	concurrencyQueue = ConcurrencyQueue{queue: make(chan struct{}, app.Setting.ConcurrencyQueue)}
 	taskCount = TaskCount{sync.WaitGroup{}, make(chan struct{})}
 	go taskCount.Wait()
@@ -161,28 +163,34 @@ func (task Task) Add(taskModel models.Task) {
 	}
 
 	cronName := strconv.Itoa(taskModel.Id)
-	err := util.PanicToError(func() {
-		serviceCron.AddFunc(taskModel.Spec, taskFunc, cronName)
-	})
+
+	// err := util.PanicToError(func() {
+	// serviceCron.AddFunc(taskModel.Spec, taskFunc, cronName)
+
+	// })
+	job, err := scheduler.NewJob(gocron.CronJob(taskModel.Spec, true), gocron.NewTask(taskFunc), gocron.WithName(cronName))
+
 	if err != nil {
 		logger.Error("添加任务到调度器失败#", err)
 	}
+	logger.Info("添加任务到调度器成功#", taskModel.Name, job)
 }
 
-func (task Task) NextRunTime(taskModel models.Task) time.Time {
+func (task Task) NextRunTime(taskModel models.Task) (time.Time, error) {
 	if taskModel.Level != models.TaskLevelParent ||
 		taskModel.Status != models.Enabled {
-		return time.Time{}
+		return time.Time{}, nil
 	}
-	entries := serviceCron.Entries()
+	// entries := serviceCron.Entries()
+	entries := scheduler.Jobs()
 	taskName := strconv.Itoa(taskModel.Id)
 	for _, item := range entries {
-		if item.Name == taskName {
-			return item.Next
+		if item.Name() == taskName {
+			return item.NextRun()
 		}
 	}
 
-	return time.Time{}
+	return time.Time{}, nil
 }
 
 // 停止运行中的任务
@@ -191,13 +199,24 @@ func (task Task) Stop(ip string, port int, id int64) {
 }
 
 func (task Task) Remove(id int) {
-	serviceCron.RemoveJob(strconv.Itoa(id))
+	// serviceCron.RemoveJob(strconv.Itoa(id))
+	entries := scheduler.Jobs()
+	taskName := strconv.Itoa(id)
+	for _, item := range entries {
+		if item.Name() == taskName {
+			scheduler.RemoveJob(item.ID())
+			return
+		}
+	}
+
 }
 
 // 等待所有任务结束后退出
 func (task Task) WaitAndExit() {
-	serviceCron.Stop()
-	taskCount.Exit()
+	// serviceCron.Stop()
+	// taskCount.Exit()
+	scheduler.StopJobs()
+	scheduler.Shutdown()
 }
 
 // 直接运行任务
@@ -312,7 +331,7 @@ func updateTaskLog(taskLogId int64, taskResult TaskResult) (int64, error) {
 
 }
 
-func createJob(taskModel models.Task) cron.FuncJob {
+func createJob(taskModel models.Task) func() {
 	handler := createHandler(taskModel)
 	if handler == nil {
 		return nil

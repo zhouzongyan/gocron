@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gaggad/goscheduler/internal/modules/app"
-	"github.com/gaggad/goscheduler/internal/modules/rpc/auth"
-	"github.com/gaggad/goscheduler/internal/modules/rpc/proto"
+	"chn.gg/zhouzongyan/gocron/internal/modules/app"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/auth"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 )

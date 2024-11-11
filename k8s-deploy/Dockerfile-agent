@@ -4,7 +4,7 @@ ENV goscheduler_AGENT_VERSION=v1.5
 
 RUN apk add --no-cache ca-certificates  tzdata bash \
     &&  mkdir -p /app \
-    &&  wget -P /tmp  https://github.com/gaggad/goscheduler/releases/download/${goscheduler_AGENT_VERSION}/goscheduler-node-${goscheduler_AGENT_VERSION}-linux-amd64.tar.gz \
+    &&  wget -P /tmp  https://chn.gg/zhouzongyan/gocron/releases/download/${goscheduler_AGENT_VERSION}/goscheduler-node-${goscheduler_AGENT_VERSION}-linux-amd64.tar.gz \
     &&  cd /tmp \
     &&  tar  zvxf goscheduler-node-${goscheduler_AGENT_VERSION}-linux-amd64.tar.gz  \
     &&  mv /tmp/goscheduler-node-linux-amd64/goscheduler-node /app \

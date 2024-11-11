@@ -7,9 +7,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gaggad/goscheduler/internal/modules/rpc/auth"
-	pb "github.com/gaggad/goscheduler/internal/modules/rpc/proto"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/auth"
+	pb "chn.gg/zhouzongyan/gocron/internal/modules/rpc/proto"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"

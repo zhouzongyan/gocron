@@ -10,13 +10,13 @@ import (
 
 	macaron "gopkg.in/macaron.v1"
 
-	"github.com/gaggad/goscheduler/internal/models"
-	"github.com/gaggad/goscheduler/internal/modules/app"
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/setting"
-	"github.com/gaggad/goscheduler/internal/routers"
-	"github.com/gaggad/goscheduler/internal/service"
-	"github.com/gaggad/goscheduler/internal/util"
+	"chn.gg/zhouzongyan/gocron/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/modules/app"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/setting"
+	"chn.gg/zhouzongyan/gocron/internal/routers"
+	"chn.gg/zhouzongyan/gocron/internal/service"
+	"chn.gg/zhouzongyan/gocron/internal/util"
 	"github.com/urfave/cli"
 )
 
@@ -30,8 +30,8 @@ const DefaultPort = 5920
 
 func main() {
 	cliApp := cli.NewApp()
-	cliApp.Name = "goscheduler"
-	cliApp.Usage = "goscheduler service"
+	cliApp.Name = "gocron"
+	cliApp.Usage = "gocron service"
 	cliApp.Version, _ = util.FormatAppVersion(AppVersion, GitCommit, BuildDate)
 	cliApp.Commands = getCommands()
 	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...)

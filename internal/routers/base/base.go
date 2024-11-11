@@ -1,7 +1,7 @@
 package base
 
 import (
-	"github.com/gaggad/goscheduler/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/models"
 	"gopkg.in/macaron.v1"
 )
 

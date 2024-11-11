@@ -5,12 +5,12 @@ import (
 	"strings"
 	"time"
 
+	"chn.gg/zhouzongyan/gocron/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/modules/app"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/routers/base"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gaggad/goscheduler/internal/models"
-	"github.com/gaggad/goscheduler/internal/modules/app"
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
-	"github.com/gaggad/goscheduler/internal/routers/base"
 	"gopkg.in/macaron.v1"
 )
 

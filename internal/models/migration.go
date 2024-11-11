@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
 	"github.com/go-xorm/xorm"
 )
 

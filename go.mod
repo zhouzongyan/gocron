@@ -1,4 +1,4 @@
-module github.com/gaggad/goscheduler
+module chn.gg/zhouzongyan/gocron
 
 go 1.12
 
@@ -7,6 +7,7 @@ require (
 	github.com/Unknwon/com v0.0.0-20190321035513-0fed4efef755 // indirect
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/go-co-op/gocron/v2 v2.12.3
 	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df
 	github.com/go-macaron/binding v0.0.0-20170611065819-ac54ee249c27
 	github.com/go-macaron/gzip v0.0.0-20160222043647-cad1c6580a07
@@ -24,9 +25,7 @@ require (
 	github.com/rakyll/statik v0.1.6
 	github.com/sirupsen/logrus v1.4.2
 	github.com/urfave/cli v1.20.0
-	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5 // indirect
-	golang.org/x/net v0.0.0-20190522155817-f3200d17e092
-	golang.org/x/text v0.3.2 // indirect
+	golang.org/x/net v0.26.0
 	google.golang.org/genproto v0.0.0-20190530194941-fb225487d101 // indirect
 	google.golang.org/grpc v1.21.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect

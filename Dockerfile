@@ -8,7 +8,7 @@ RUN go env -w GO111MODULE=on && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/gaggad/goscheduler.git \
+RUN git clone https://chn.gg/zhouzongyan/gocron.git \
     && cd goscheduler \
     && yarn config set ignore-engines true \
     && make install-vue \

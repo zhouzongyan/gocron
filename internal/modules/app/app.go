@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/setting"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
-	"github.com/gaggad/goscheduler/internal/util"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/setting"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/util"
 )
 
 var (

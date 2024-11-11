@@ -6,7 +6,7 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/gaggad/goscheduler/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
 )
 
 type Message map[string]interface{}

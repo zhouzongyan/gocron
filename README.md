@@ -1,7 +1,7 @@
 # goscheduler - 定时任务管理系统
-[![Downloads](https://img.shields.io/github/downloads/gaggad/goscheduler/total.svg)](https://github.com/gaggad/goscheduler/releases)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/gaggad/goscheduler/blob/master/LICENSE)
-[![Release](https://img.shields.io/github/release/gaggad/goscheduler.svg?label=Release)](https://github.com/gaggad/goscheduler/releases)
+[![Downloads](https://img.shields.io/github/downloads/gaggad/goscheduler/total.svg)](https://chn.gg/zhouzongyan/gocron/releases)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://chn.gg/zhouzongyan/gocron/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/gaggad/goscheduler.svg?label=Release)](https://chn.gg/zhouzongyan/gocron/releases)
 
 # 项目简介
 使用Go语言开发的轻量级定时任务集中调度和管理系统，支持http、shell任务
@@ -39,7 +39,7 @@ gocron、goscheduler 使用的都是 MIT LICENSE
 
 
 ## 下载
-[releases](https://github.com/gaggad/goscheduler/releases)
+[releases](https://chn.gg/zhouzongyan/gocron/releases)
 
 ## 版本升级
 ### 替换可执行文件
@@ -67,7 +67,7 @@ v1.5.4
 ### 源码安装
 
 - 安装Go 1.11+
-- `go get -d github.com/gaggad/goscheduler`
+- `go get -d chn.gg/zhouzongyan/gocron`
 - `export GO111MODULE=on`
 - 编译 `make`
 - 启动
@@ -108,15 +108,15 @@ docker run --name goscheduler --link mysql:db -p 5920:5920 -d gaggad/goscheduler
 
 ### 命令
 
-* goscheduler
+* gocron
     * -v 查看版本
 
-* goscheduler web
+* gocron web
     * --host 默认0.0.0.0
     * -p 端口, 指定端口, 默认5920
     * -e 指定运行环境, dev|test|prod, dev模式下可查看更多日志信息, 默认prod
     * -h 查看帮助
-* goscheduler-node
+* gocron-node
     * -allow-root *nix平台允许以root用户运行
     * -s ip:port 监听地址
     * -enable-tls 开启TLS
@@ -130,20 +130,20 @@ docker run --name goscheduler --link mysql:db -p 5920:5920 -d gaggad/goscheduler
 
 ## 程序使用的组件
 * Web框架 [Macaron](http://go-macaron.com/)
-* 定时任务调度 [Cron](https://github.com/robfig/cron)
+* 定时任务调度 [Cron](https://github.com/go-co-op/gocron)
 * ORM [Xorm](https://github.com/go-xorm/xorm)
 * UI框架 [Element UI](https://github.com/ElemeFE/element)
 * 依赖管理 [Govendor](https://github.com/kardianos/govendor)
 * RPC框架 [gRPC](https://github.com/grpc/grpc)
 
 ## 反馈
-提交[issue](https://github.com/gaggad/goscheduler/issues/new)
+提交[issue](https://chn.gg/zhouzongyan/gocron/issues/new)
 
 ## ChangeLog
 
 v1.5.4
 --------
-* HTTP POST 请求支持设置请求体
+* HTTP POST 请求支持设置请求体,更换定时任务调度库
 
 v1.5
 --------

@@ -1,10 +1,10 @@
 package loginlog
 
 import (
-	"github.com/gaggad/goscheduler/internal/models"
-	"github.com/gaggad/goscheduler/internal/modules/logger"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
-	"github.com/gaggad/goscheduler/internal/routers/base"
+	"chn.gg/zhouzongyan/gocron/internal/models"
+	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/routers/base"
 	macaron "gopkg.in/macaron.v1"
 )
 

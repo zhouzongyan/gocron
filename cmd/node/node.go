@@ -7,10 +7,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gaggad/goscheduler/internal/modules/rpc/auth"
-	"github.com/gaggad/goscheduler/internal/modules/rpc/server"
-	"github.com/gaggad/goscheduler/internal/modules/utils"
-	"github.com/gaggad/goscheduler/internal/util"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/auth"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/server"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
+	"chn.gg/zhouzongyan/gocron/internal/util"
 	log "github.com/sirupsen/logrus"
 )
 
