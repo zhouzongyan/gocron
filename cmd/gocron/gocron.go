@@ -6,14 +6,20 @@ package main
 import (
 	"os"
 	"os/signal"
+	"runtime"
+	"strings"
 	"syscall"
 
+	log "github.com/sirupsen/logrus"
 	macaron "gopkg.in/macaron.v1"
 
 	"chn.gg/zhouzongyan/gocron/internal/models"
 	"chn.gg/zhouzongyan/gocron/internal/modules/app"
 	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/auth"
+	"chn.gg/zhouzongyan/gocron/internal/modules/rpc/server"
 	"chn.gg/zhouzongyan/gocron/internal/modules/setting"
+	"chn.gg/zhouzongyan/gocron/internal/modules/utils"
 	"chn.gg/zhouzongyan/gocron/internal/routers"
 	"chn.gg/zhouzongyan/gocron/internal/service"
 	"chn.gg/zhouzongyan/gocron/internal/util"
@@ -66,7 +72,98 @@ func getCommands() []cli.Command {
 		},
 	}
 
-	return []cli.Command{command}
+	node := cli.Command{
+		Name:   "node",
+		Usage:  "run node server",
+		Action: runNode,
+		Flags: []cli.Flag{
+			cli.BoolFlag{
+				Name:  "root",
+				Usage: "run server as root",
+			},
+			cli.StringFlag{
+				Name:  "s",
+				Value: "0.0.0.0:5921",
+				Usage: "bind port ip:port",
+			},
+			cli.BoolFlag{
+				Name:  "tls",
+				Usage: "enable-tls",
+			},
+			cli.StringFlag{
+				Name:  "ca",
+				Value: "",
+				Usage: "tls ca file",
+			},
+			cli.StringFlag{
+				Name:  "cert",
+				Value: "",
+				Usage: "tls cert file",
+			},
+			cli.StringFlag{
+				Name:  "key",
+				Value: "",
+				Usage: "tls key file",
+			},
+			cli.StringFlag{
+				Name:  "logLevel",
+				Value: "info",
+				Usage: "log lever",
+			},
+		},
+	}
+
+	return []cli.Command{command, node}
+}
+func runNode(ctx *cli.Context) {
+	logLevel := "info"
+	if ctx.IsSet("logLevel") {
+		logLevel = ctx.String("logLevel")
+	}
+	level, err := log.ParseLevel(logLevel)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetLevel(level)
+
+	// if version {
+	// 	util.PrintAppVersion(AppVersion, GitCommit, BuildDate)
+	// 	return
+	// }
+	enableTLS := false
+	if ctx.IsSet("tls") {
+		enableTLS = ctx.Bool("tls")
+	}
+	CAFile := ctx.String("ca")
+	certFile := ctx.String("cert")
+	keyFile := ctx.String("key")
+	if enableTLS {
+
+		if !utils.FileExist(CAFile) {
+			log.Fatalf("failed to read ca cert file: %s", CAFile)
+		}
+		if !utils.FileExist(certFile) {
+			log.Fatalf("failed to read server cert file: %s", certFile)
+			return
+		}
+		if !utils.FileExist(keyFile) {
+			log.Fatalf("failed to read server key file: %s", keyFile)
+			return
+		}
+	}
+
+	certificate := auth.Certificate{
+		CAFile:   strings.TrimSpace(CAFile),
+		CertFile: strings.TrimSpace(certFile),
+		KeyFile:  strings.TrimSpace(keyFile),
+	}
+	allowRoot := ctx.Bool("root")
+	if runtime.GOOS != "windows" && os.Getuid() == 0 && !allowRoot {
+		log.Fatal("Do not run goscheduler-node as root user")
+		return
+	}
+	serverAddr := ctx.String("s")
+	server.Start(serverAddr, enableTLS, certificate)
 }
 
 func runWeb(ctx *cli.Context) {

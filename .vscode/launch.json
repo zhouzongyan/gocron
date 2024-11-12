@@ -5,7 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "gocron",
+            "name": "gocron node",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "cmd/gocron/gocron.go",
+            "args": ["node"]
+        },
+        {
+            "name": "gocron web",
             "type": "go",
             "request": "launch",
             "mode": "auto",
