@@ -15,6 +15,7 @@ import (
 	"chn.gg/zhouzongyan/gocron/internal/modules/setting"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Status int8
@@ -126,6 +127,8 @@ func getDbEngineDSN(setting *setting.Setting) string {
 			setting.Db.Host,
 			setting.Db.Port,
 			setting.Db.Database)
+	case "sqlite3":
+		dsn = setting.Db.Database + ".db"
 	}
 
 	return dsn

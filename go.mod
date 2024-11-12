@@ -19,6 +19,7 @@ require (
 	github.com/klauspost/compress v1.5.0 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
 	github.com/lib/pq v1.10.7
+	github.com/mattn/go-sqlite3 v1.14.24 // indirect
 	github.com/rakyll/statik v0.1.6
 	github.com/sirupsen/logrus v1.4.2
 	github.com/urfave/cli v1.20.0
