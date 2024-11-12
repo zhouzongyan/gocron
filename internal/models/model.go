@@ -6,13 +6,14 @@ import (
 	"time"
 
 	macaron "gopkg.in/macaron.v1"
+	"xorm.io/xorm"
+	"xorm.io/xorm/log"
+	"xorm.io/xorm/names"
 
 	"chn.gg/zhouzongyan/gocron/internal/modules/app"
 	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
 	"chn.gg/zhouzongyan/gocron/internal/modules/setting"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
 	_ "github.com/lib/pq"
 )
 
@@ -84,13 +85,13 @@ func CreateDb() *xorm.Engine {
 	if app.Setting.Db.Prefix != "" {
 		// 设置表前缀
 		TablePrefix = app.Setting.Db.Prefix
-		mapper := core.NewPrefixMapper(core.SnakeMapper{}, app.Setting.Db.Prefix)
+		mapper := names.NewPrefixMapper(names.SnakeMapper{}, app.Setting.Db.Prefix)
 		engine.SetTableMapper(mapper)
 	}
 	// 本地环境开启日志
 	if macaron.Env == macaron.DEV {
 		engine.ShowSQL(true)
-		engine.Logger().SetLevel(core.LOG_DEBUG)
+		engine.Logger().SetLevel(log.LOG_DEBUG)
 	}
 
 	go keepDbAlived(engine)
