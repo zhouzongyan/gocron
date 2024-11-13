@@ -19,6 +19,7 @@ import UserEditMyPassword from '../pages/user/editMyPassword'
 import NotificationEmail from '../pages/system/notification/email'
 import NotificationSlack from '../pages/system/notification/slack'
 import NotificationWebhook from '../pages/system/notification/webhook'
+import NotificationBackup from '../pages/system/backup.vue'
 
 import Install from '../pages/install/index'
 import LoginLog from '../pages/system/loginLog'
@@ -151,6 +152,11 @@ const router = new Router({
       path: '/system/login-log',
       name: 'login-log',
       component: LoginLog
+    },
+    {
+      path: '/system/backup',
+      name: 'system-backup',
+      component: NotificationBackup
     }
   ]
 })

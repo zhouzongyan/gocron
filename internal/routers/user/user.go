@@ -317,7 +317,11 @@ func generateToken(user *models.User) (string, error) {
 func RestoreToken(ctx *macaron.Context) error {
 	authToken := ctx.Req.Header.Get("Auth-Token")
 	if authToken == "" {
-		return nil
+		authToken = ctx.QueryTrim("Auth-Token")
+		if authToken == "" {
+			return nil
+		}
+		// return nil
 	}
 	token, err := jwt.Parse(authToken, func(*jwt.Token) (interface{}, error) {
 		return []byte(app.Setting.AuthSecret), nil

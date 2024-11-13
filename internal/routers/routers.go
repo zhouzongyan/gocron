@@ -123,6 +123,11 @@ func Register(m *macaron.Macaron) {
 			m.Post("/update", manage.UpdateWebHook)
 		})
 		m.Get("/login-log", loginlog.Index)
+		m.Group("/backup", func() {
+			m.Get("/start", manage.Backup)
+			m.Get("/file", manage.BackupFile)
+			m.Get("/download", manage.DownloadBackup)
+		})
 	})
 
 	// API

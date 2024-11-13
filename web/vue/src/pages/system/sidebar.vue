@@ -9,6 +9,7 @@
       router>
       <el-menu-item index="/system">通知配置</el-menu-item>
       <el-menu-item index="/system/login-log">登录日志</el-menu-item>
+      <el-menu-item index="/system/backup">备份恢复</el-menu-item>
     </el-menu>
   </el-aside>
 </template>
@@ -23,6 +24,8 @@ export default {
     currentRoute () {
       if (this.$route.path === '/system/login-log') {
         return '/system/login-log'
+      } else if (this.$route.path === '/system/backup') {
+        return '/system/backup'
       }
       return '/system'
     }

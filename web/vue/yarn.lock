@@ -551,11 +551,11 @@ __metadata:
   linkType: hard
 
 "async-validator@npm:~1.8.1":
-  version: 1.8.2
-  resolution: "async-validator@npm:1.8.2"
+  version: 1.8.5
+  resolution: "async-validator@npm:1.8.5"
   dependencies:
     babel-runtime: "npm:6.x"
-  checksum: 10c0/ed90367ddb36fd62b43ece41286c1391dae625b3e2ca43c56f8a98fca910561389c7a6d720551aa39aff6fc0a3e307dd46c11a5c19073e6511cdd3c3716b880e
+  checksum: 10c0/6b909f9cccce9e631796b83a2148979016fe67dc22b13b947c3f72249a1db320a43aaa8f9ee2da362c7b2f85d04a081dfe0a2666adc3dfcab73227fd66b0aa79
   languageName: node
   linkType: hard
 
@@ -3067,9 +3067,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"element-ui@npm:^2.3.6":
-  version: 2.3.6
-  resolution: "element-ui@npm:2.3.6"
+"element-ui@npm:^2.15.14":
+  version: 2.15.14
+  resolution: "element-ui@npm:2.15.14"
   dependencies:
     async-validator: "npm:~1.8.1"
     babel-helper-vue-jsx-merge-props: "npm:^2.0.0"
@@ -3078,8 +3078,8 @@ __metadata:
     resize-observer-polyfill: "npm:^1.5.0"
     throttle-debounce: "npm:^1.0.1"
   peerDependencies:
-    vue: ^2.5.2
-  checksum: 10c0/d933aefd37a59387b93e0ccea9fe2b9fa76f32434d3b80e4c55ddaa6621cd2716f3efa262df1d092d1aaf28351fb62af2ffeb0237c1a5063cf0a02912580147f
+    vue: ^2.5.17
+  checksum: 10c0/84a29272a10778aeeda9386984ef435d890546a476740f1f2a43776e060e7a353f101ec9f797113ba5ead027bbf114ac22667623285d11f89ae89920568a50aa
   languageName: node
   linkType: hard
 
@@ -4342,7 +4342,7 @@ __metadata:
     chalk: "npm:^2.0.1"
     copy-webpack-plugin: "npm:^4.0.1"
     css-loader: "npm:^0.28.0"
-    element-ui: "npm:^2.3.6"
+    element-ui: "npm:^2.15.14"
     eslint: "npm:^4.15.0"
     eslint-config-standard: "npm:^10.2.1"
     eslint-friendly-formatter: "npm:^3.0.0"
@@ -8113,9 +8113,9 @@ __metadata:
   linkType: hard
 
 "resize-observer-polyfill@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "resize-observer-polyfill@npm:1.5.0"
-  checksum: 10c0/5112173d546f4c6c74b39dc53544544a6358d758abd1458bf70411de0601f3a3ca3e10e8dde1fecf4aaa282684ef5a80667d23337d87ff1b472464c4129bc040
+  version: 1.5.1
+  resolution: "resize-observer-polyfill@npm:1.5.1"
+  checksum: 10c0/5e882475067f0b97dc07e0f37c3e335ac5bc3520d463f777cec7e894bb273eddbfecb857ae668e6fb6881fd6f6bb7148246967172139302da50fa12ea3a15d95
   languageName: node
   linkType: hard
 
@@ -9131,9 +9131,9 @@ __metadata:
   linkType: hard
 
 "throttle-debounce@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "throttle-debounce@npm:1.0.1"
-  checksum: 10c0/1fe6aea415939d6c323fa430f43e5f7b6549f5e04c1bf8d53a3d4d152f94a2e8cac65111189e537f1e698ebeaf704a0ec75e3827f31bd182b0c7a9d37730d8f8
+  version: 1.1.0
+  resolution: "throttle-debounce@npm:1.1.0"
+  checksum: 10c0/022018fffd03d5ea5ee32387b25b2d0bfc52e76976f820df815f236e81cfbe2e42b1d46a8e03142ef7df12c70b2ac9cf2dc5aeb74ed08119717778e4985ea87d
   languageName: node
   linkType: hard
 

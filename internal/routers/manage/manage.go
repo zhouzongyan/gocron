@@ -2,6 +2,9 @@ package manage
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
 
 	"chn.gg/zhouzongyan/gocron/internal/models"
 	"chn.gg/zhouzongyan/gocron/internal/modules/logger"
@@ -127,4 +130,25 @@ func UpdateWebHook(ctx *macaron.Context) string {
 	return utils.JsonResponseByErr(err)
 }
 
-// endregion
+// 备份数据库
+func Backup(ctx *macaron.Context) string {
+	err := models.Db.DumpAllToFile("./conf/gocron.sql")
+	return utils.JsonResponseByErr(err)
+}
+
+// 获取备份文件
+func BackupFile(ctx *macaron.Context) string {
+	_, err := os.Stat("./conf/gocron.sql")
+
+	return utils.JsonResponseByErr(err)
+}
+
+// 下载备份文件
+func DownloadBackup(ctx *macaron.Context) {
+	file, _ := os.Open("./conf/gocron.sql")
+	defer file.Close()
+	ctx.Header().Set("Content-Type", "application/octet-stream")
+	ctx.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", file.Name()))
+	data, _ := ioutil.ReadAll(file)
+	ctx.Write(data)
+}
